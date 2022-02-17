@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="ezgif.com-gif-maker.jpg" />
+    <None Remove="path815.png" />
     <None Remove="user-logo1.png" />
   </ItemGroup>
 
@@ -20,6 +21,7 @@
   <ItemGroup>
     <Resource Include="Assets\SSLogo.jpg" />
     <Resource Include="Assets\UserLogo.png" />
+    <Resource Include="path815.png" />
   </ItemGroup>
 
 </Project>

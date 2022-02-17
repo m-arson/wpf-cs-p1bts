@@ -39,11 +39,51 @@
             <Grid Grid.Row="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="250"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Background="#efefef">
-                        <Button Content="Hello World" />
+                    <Grid Grid.Column="0" Background="{DynamicResource PrimaryHueMidBrush}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Background="{DynamicResource PrimaryHueMidBrush}">
+                            <StackPanel
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Margin="0 -35 0 0"
+                                Background="{DynamicResource PrimaryHueMidBrush}">
+                                <Image Source="/path815.png" 
+                                       Width="50" Height="50"
+                                       Margin="15 0 0 0"/>
+                                <StackPanel
+                                    Orientation="Vertical">
+                                    <TextBlock
+                                        Text="Dwipanca Corps"
+                                        Foreground="#efefef"
+                                        FontSize="20"
+                                        Margin="15 15 0 0"
+                                        FontWeight="SemiBold" />
+                                    <TextBlock
+                                        Foreground="#efefef"
+                                        Margin="15 0 0 20"
+                                        Text="Report System"
+                                        FontSize="16"
+                                        FontWeight="Normal" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <StackPanel Orientation="Vertical" Margin="15 0 15 0">
+                                <Separator Background="#aaa" Opacity=".3" />
+                                <TextBlock Text="Satu Dua Tiga" Style="{DynamicResource }"/>
+                                <TextBlock Text="Satu Dua Tiga" />
+                                <TextBlock Text="Satu Dua Tiga" />
+                                <Separator Background="#aaa" Opacity=".3" />
+
+                            </StackPanel>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>
