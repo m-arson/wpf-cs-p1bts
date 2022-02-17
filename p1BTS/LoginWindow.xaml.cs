@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 using System.Data;
 using System.Data.SQLite;
 using Dapper;
+using System.Diagnostics;
 
 namespace p1BTS
 {
@@ -115,11 +116,13 @@ namespace p1BTS
                             this.Close();
                         } catch(Exception e)
                         {
+                            Debug.WriteLine(e.Message);
                             errorMessage.Text = "Fail Select Database!";
                         }
 
                     } catch(Exception e)
                     {
+                        Debug.WriteLine(e.Message);
                         errorMessage.Text = "Fail Update Database!";
                     }
                 }
@@ -138,6 +141,11 @@ namespace p1BTS
                 var content = await res.Content.ReadAsStringAsync();
                 yield return content;
             }
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
         }
     }
 }

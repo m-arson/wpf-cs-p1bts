@@ -6,11 +6,15 @@
         xmlns:local="clr-namespace:p1BTS"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+        xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
+        xmlns:m="clr-namespace:System.Windows.Media;assembly=PresentationCore"
+        Icon="/Assets/MainLogo.png"
         Width="1366"
         Height="768"
         ResizeMode="CanResize"
         AllowsTransparency="True"
         WindowState="Maximized"
+        SizeChanged="Window_SizeChanged"
         Title="Dashboard"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen">
@@ -118,7 +122,7 @@
                                 VerticalAlignment="Center"
                                 Margin="0 -35 0 0"
                                 Background="{DynamicResource PrimaryHueMidBrush}">
-                                <Image Source="/path815.png" 
+                                <Image Source="/Assets/DashboardLogo.png" 
                                        Width="50" Height="50"
                                        Margin="15 0 0 0"/>
                                 <StackPanel
@@ -243,6 +247,72 @@
                                 Grid.Row="3"
                                 Margin="15 15 0 15"
                                 Style="{StaticResource BtnSetDef}"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="15" x:Name="dddt">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <TextBlock Text="Dashboard" FontSize="24" FontWeight="SemiBold"/>
+                            </Grid>
+                            <Grid Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="Arson Marianus (admin)" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Owner" FontSize="13" FontWeight="Normal"/>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                        <Grid
+                            Margin="15 0"
+                            Grid.Row="1"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left">
+                            <ScrollViewer
+                                x:Name="sv"
+                                CanContentScroll="True"
+                                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                                <DataGrid
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    CanUserReorderColumns="False"
+                                    AutoGenerateColumns="False">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="ID 0000" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0001" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0002" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0003" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0004" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0005" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0006" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0007" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0008" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0009" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0010" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0011" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0012" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0013" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0014" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0015" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0016" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0017" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0018" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0019" MinWidth="100"/>
+                                        <DataGridTextColumn Header="ID 0020" MinWidth="100"/>
+                                    </DataGrid.Columns>
+                                    <DataGrid.Resources>
+                                        
+                                    </DataGrid.Resources>
+                                </DataGrid>
+                            </ScrollViewer>
                         </Grid>
                     </Grid>
                 </Grid>

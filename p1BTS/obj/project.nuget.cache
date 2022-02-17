@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "rdc4arkbLVuERdPTyC8j0SXz1uqORVudlVzKowZfLzUNEFxNiE/BAGE9kVT0lofVSCdfSZ3B8FYZqBgtFLkq8A==",
+  "dgSpecHash": "K1dxXYQdPwCceItKmPYetmFCQax3++GxIWfbk16YmGFzO9R1vdpkFhxbwWdRZxBcFSHrL16GZo4JyUqZinUdKg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Elit\\source\\repos\\p1BTS\\p1BTS\\p1BTS.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Elit\\.nuget\\packages\\calcbinding\\2.5.2\\calcbinding.2.5.2.nupkg.sha512",
     "C:\\Users\\Elit\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
+    "C:\\Users\\Elit\\.nuget\\packages\\dynamicexpresso.core\\2.3.1\\dynamicexpresso.core.2.3.1.nupkg.sha512",
     "C:\\Users\\Elit\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Elit\\.nuget\\packages\\materialdesigncolors\\2.0.4\\materialdesigncolors.2.0.4.nupkg.sha512",
     "C:\\Users\\Elit\\.nuget\\packages\\materialdesignthemes\\4.3.0\\materialdesignthemes.4.3.0.nupkg.sha512",

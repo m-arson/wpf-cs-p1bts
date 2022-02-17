@@ -8,8 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\MainLogo.png" />
     <None Remove="ezgif.com-gif-maker.jpg" />
     <None Remove="LocalSQL.db" />
+    <None Remove="MainLogo.png" />
     <None Remove="path815.png" />
     <None Remove="user-logo1.png" />
   </ItemGroup>
@@ -21,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CalcBinding" Version="2.5.2" />
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
@@ -28,9 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\MainLogo.png" />
     <Resource Include="Assets\SSLogo.jpg" />
     <Resource Include="Assets\UserLogo.png" />
-    <Resource Include="path815.png" />
+    <Resource Include="Assets\DashboardLogo.png" />
   </ItemGroup>
 
 </Project>

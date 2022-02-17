@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:p1BTS"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+        Icon="/Assets/MainLogo.png"
         Title="SplashScreen" Height="350" Width="500"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"                              
         WindowStyle="None"

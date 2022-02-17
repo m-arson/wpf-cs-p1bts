@@ -32,7 +32,9 @@ namespace p1BTS
 
         private static void WmGetMinMaxInfo(IntPtr hwnd, IntPtr lParam)
         {
+#pragma warning disable CS8605
             MINMAXINFO mmi = (MINMAXINFO)Marshal.PtrToStructure(lParam, typeof(MINMAXINFO));
+#pragma warning restore CS8605
             int MONITOR_DEFAULTTONEAREST = 0x00000002;
             IntPtr monitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST);
             if (monitor != IntPtr.Zero)
@@ -110,11 +112,13 @@ namespace p1BTS
                 if (this == Empty) { return "RECT {Empty}"; }
                 return "RECT { left : " + left + " / top : " + top + " / right : " + right + " / bottom : " + bottom + " }";
             }
+#pragma warning disable CS8765
             public override bool Equals(object obj)
             {
                 if (!(obj is Rect)) { return false; }
                 return (this == (RECT)obj);
             }
+#pragma warning restore CS8765
             public override int GetHashCode() => left.GetHashCode() + top.GetHashCode() + right.GetHashCode() + bottom.GetHashCode();
             public static bool operator ==(RECT rect1, RECT rect2) { return (rect1.left == rect2.left && rect1.top == rect2.top && rect1.right == rect2.right && rect1.bottom == rect2.bottom); }
             public static bool operator !=(RECT rect1, RECT rect2) { return !(rect1 == rect2); }
@@ -133,11 +137,18 @@ namespace p1BTS
                 IntPtr handler = (new WindowInteropHelper(this)).Handle;
                 HwndSource.FromHwnd(handler).AddHook(new HwndSourceHook(WindowProc));
             };
-
+            this.sv.Height = this.Height - 110;
+            this.sv.Width = this.dddt.Width;
             MaxHeight = SystemParameters.VirtualScreenHeight;
             MinimizeWindowBtn.Click += (s, e) => WindowState = WindowState.Minimized;
             MaximizeWindowBtn.Click += (s, e) => WindowState = (WindowState == WindowState.Maximized) ? WindowState.Normal : WindowState.Maximized;
             CloseAppBtn.Click += (s, e) => Application.Current.Shutdown();
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            this.sv.Height = this.Height - 110;
+            this.sv.Width = this.dddt.Width;
         }
     }
 }
