@@ -16,6 +16,7 @@ namespace p1BTS
 {
     public partial class LoginWindow : Window
     {
+        private int priv_checked;
         public LoginWindow()
         {
             InitializeComponent();
@@ -29,14 +30,26 @@ namespace p1BTS
             var user = (TextBox)this.username;
             var pass = (PasswordBox)this.password;
             var errorMessage = (TextBlock)this.errorMsg;
-
-            if(user.Text.Equals("") || pass.Password.Equals("")) {
+            if(user.Text.Equals("") || pass.Password.Equals("") || priv_checked == 9) {
                 errorMessage.Text = "Field are empty!";
             } else
             {
                 Dashboard dashboard= new Dashboard();
                 dashboard.Show();
                 this.Close();
+            }
+        }
+        protected void setCheckedPrev(object sender, RoutedEventArgs e)
+        {
+            if(this.owner.IsChecked == true)
+            {
+                priv_checked = 1;
+            } else if(this.staff.IsChecked == true)
+            {
+                priv_checked = 0;
+            } else
+            {
+                priv_checked = 9;
             }
         }
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)

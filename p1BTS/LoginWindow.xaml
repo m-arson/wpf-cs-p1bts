@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:p1BTS"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="550" Width="370"
+        Title="LoginWindow" Height="610" Width="370"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"                              
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -56,6 +56,21 @@
                 BorderThickness="0,0,0,1"
                 BorderBrush="#dedede"
                 Style="{StaticResource MaterialDesignPasswordBox}" />
+            <StackPanel Orientation="Vertical" Width="300" Margin="0 15 0 0">
+                <TextBlock Text="Privileges : " FontSize="16"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0 15 0 20"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton Name="owner" GroupName="privG" Checked="setCheckedPrev">
+                        <TextBlock FontSize="16" Margin="0, -5, 0, 0">Owner</TextBlock>
+                    </RadioButton>
+                    <TextBlock Text=" " Margin="10 0"/>
+                    <RadioButton Name="staff" IsChecked="True" GroupName="privG" Checked="setCheckedPrev">
+                        <TextBlock FontSize="16" Margin="0, -5, 0, 0">Staff</TextBlock>
+                    </RadioButton>
+                </StackPanel>
+            </StackPanel>
             <Button
                 Click="ProcessLogin"
                 Margin="0 30 0 0"
@@ -67,7 +82,7 @@
                 FontSize="16"
                 Content="Sign In"/>
             <TextBlock
-                Margin="0 25 0 0"
+                Margin="0 10 0 0"
                 x:Name="errorMsg"
                 TextWrapping="WrapWithOverflow"
                 FontSize="14"

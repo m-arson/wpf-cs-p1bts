@@ -17,6 +17,70 @@
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="35" />
     </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <SolidColorBrush x:Key="BlackBrush" Color="Black" Opacity="0.2" />
+        <Style TargetType="TextBlock" x:Key="MenutTextBlock">
+            <Setter Property="Foreground" Value="#efefef" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Padding" Value="15 15 0 15" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource BlackBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ComboBox" x:Key="ComboBoxSelect">
+            <Setter Property="Background" Value="#efefef" />
+            <Setter Property="Padding" Value="15 8" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Button" x:Key="BtnSetDef">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="BorderBrush" Value="#efefef" />
+            <Setter Property="Foreground" Value="#efefef" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1">
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#efefef"/>
+                    <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="0">
+                                    <ContentPresenter
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
     <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}">
         <Grid>
             <Grid.RowDefinitions>
@@ -25,13 +89,13 @@
             </Grid.RowDefinitions>
             <Grid VerticalAlignment="Top" Background="#efefef" Grid.Row="0">
                 <StackPanel WindowChrome.IsHitTestVisibleInChrome="True" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
-                    <Button Margin="5,0" Style="{StaticResource MaterialDesignFlatButton}" Name="MinimizeWindowBtn">
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" Name="MinimizeWindowBtn">
                         <materialDesign:PackIcon Kind="WindowMinimize" Foreground="#333" />
                     </Button>
-                    <Button Margin="5,0" Style="{StaticResource MaterialDesignFlatButton}" Name="MaximizeWindowBtn">
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" Name="MaximizeWindowBtn">
                         <materialDesign:PackIcon Kind="WindowMaximize" Foreground="#333" />
                     </Button>
-                    <Button Margin="5 0" Style="{StaticResource MaterialDesignFlatButton}" Name="CloseAppBtn">
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" Name="CloseAppBtn">
                         <materialDesign:PackIcon Kind="Close" Foreground="#333" />
                     </Button>
                 </StackPanel>
@@ -45,7 +109,7 @@
                     <Grid Grid.Column="0" Background="{DynamicResource PrimaryHueMidBrush}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition />
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0" Background="{DynamicResource PrimaryHueMidBrush}">
@@ -77,12 +141,108 @@
                         <Grid Grid.Row="1">
                             <StackPanel Orientation="Vertical" Margin="15 0 15 0">
                                 <Separator Background="#aaa" Opacity=".3" />
-                                <TextBlock Text="Satu Dua Tiga" Style="{DynamicResource }"/>
-                                <TextBlock Text="Satu Dua Tiga" />
-                                <TextBlock Text="Satu Dua Tiga" />
+                                <TextBlock Text="Dashboard" Style="{StaticResource MenutTextBlock}"/>
+                                <TextBlock Text="Finance" Style="{StaticResource MenutTextBlock}"/>
+                                <TextBlock Text="Add Staff" Style="{StaticResource MenutTextBlock}"/>
+                                <TextBlock Text="Logout" Style="{StaticResource MenutTextBlock}"/>
                                 <Separator Background="#aaa" Opacity=".3" />
-
                             </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="2" Margin="30 15 15 15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Margin="0 15"
+                                SelectedIndex="0"
+                                Style="{DynamicResource ComboBoxSelect}">
+                                <ComboBox.ItemsSource>
+                                    <CompositeCollection>
+                                        <ListBoxItem>List Company</ListBoxItem>
+                                        <ListBoxItem>Please Select2</ListBoxItem>
+                                        <ListBoxItem>Please Select3</ListBoxItem>
+                                        <ListBoxItem>Please Select4</ListBoxItem>
+                                    </CompositeCollection>
+                                </ComboBox.ItemsSource>
+                            </ComboBox>
+                            <Button
+                                Content="+"
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Margin="15 15 0 15"
+                                Style="{StaticResource BtnSetDef}"/>
+                            <ComboBox
+                                Grid.Column="0"
+                                Grid.Row="1"
+                                Margin="0 15"
+                                SelectedIndex="0"
+                                Style="{DynamicResource ComboBoxSelect}">
+                                <ComboBox.ItemsSource>
+                                    <CompositeCollection>
+                                        <ListBoxItem>List Area</ListBoxItem>
+                                        <ListBoxItem>Please Select2</ListBoxItem>
+                                        <ListBoxItem>Please Select3</ListBoxItem>
+                                        <ListBoxItem>Please Select4</ListBoxItem>
+                                    </CompositeCollection>
+                                </ComboBox.ItemsSource>
+                            </ComboBox>
+                            <Button
+                                Content="+"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Margin="15 15 0 15"
+                                Style="{StaticResource BtnSetDef}"/>
+                            <ComboBox
+                                Grid.Column="0"
+                                Grid.Row="2"
+                                Margin="0 15"
+                                SelectedIndex="0"
+                                Style="{DynamicResource ComboBoxSelect}">
+                                <ComboBox.ItemsSource>
+                                    <CompositeCollection>
+                                        <ListBoxItem>List Project Name</ListBoxItem>
+                                        <ListBoxItem>Please Select2</ListBoxItem>
+                                        <ListBoxItem>Please Select3</ListBoxItem>
+                                        <ListBoxItem>Please Select4</ListBoxItem>
+                                    </CompositeCollection>
+                                </ComboBox.ItemsSource>
+                            </ComboBox>
+                            <Button
+                                Content="+"
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                Margin="15 15 0 15"
+                                Style="{StaticResource BtnSetDef}"/>
+                            <ComboBox
+                                Grid.Column="0"
+                                Grid.Row="3"
+                                Margin="0 15"
+                                SelectedIndex="0"
+                                Style="{DynamicResource ComboBoxSelect}">
+                                <ComboBox.ItemsSource>
+                                    <CompositeCollection>
+                                        <ListBoxItem>List Item Name</ListBoxItem>
+                                        <ListBoxItem>Please Select2</ListBoxItem>
+                                        <ListBoxItem>Please Select3</ListBoxItem>
+                                        <ListBoxItem>Please Select4</ListBoxItem>
+                                    </CompositeCollection>
+                                </ComboBox.ItemsSource>
+                            </ComboBox>
+                            <Button
+                                Content="+"
+                                Grid.Column="1"
+                                Grid.Row="3"
+                                Margin="15 15 0 15"
+                                Style="{StaticResource BtnSetDef}"/>
                         </Grid>
                     </Grid>
                 </Grid>
