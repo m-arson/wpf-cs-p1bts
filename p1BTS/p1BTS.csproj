@@ -9,13 +9,22 @@
 
   <ItemGroup>
     <None Remove="ezgif.com-gif-maker.jpg" />
+    <None Remove="LocalSQL.db" />
     <None Remove="path815.png" />
     <None Remove="user-logo1.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="LocalSQL.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.115.5" />
   </ItemGroup>
 
   <ItemGroup>

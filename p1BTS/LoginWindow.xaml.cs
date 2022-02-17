@@ -11,15 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Data;
+using System.Data.SQLite;
+using Dapper;
 
 namespace p1BTS
 {
     public partial class LoginWindow : Window
     {
         private int priv_checked;
+        TextBlock errorMessage;
+        private static readonly string URL = "http://192.168.1.17/rest-api/?page=";
         public LoginWindow()
         {
             InitializeComponent();
+            errorMessage = (TextBlock)this.errorMsg;
         }
         private void exitApp(object sender, RoutedEventArgs e)
         {
@@ -29,14 +37,11 @@ namespace p1BTS
         {
             var user = (TextBox)this.username;
             var pass = (PasswordBox)this.password;
-            var errorMessage = (TextBlock)this.errorMsg;
             if(user.Text.Equals("") || pass.Password.Equals("") || priv_checked == 9) {
                 errorMessage.Text = "Field are empty!";
             } else
             {
-                Dashboard dashboard= new Dashboard();
-                dashboard.Show();
-                this.Close();
+                DoChecking(user.Text, pass.Password, priv_checked);
             }
         }
         protected void setCheckedPrev(object sender, RoutedEventArgs e)
@@ -56,6 +61,78 @@ namespace p1BTS
         {
             base.OnMouseLeftButtonDown(e);
             DragMove();
+        }
+        public async void DoChecking(string username, string password, int pcek)
+        {
+            string url = "login";
+            string jsonStr = JsonConvert.SerializeObject(new
+            {
+                username = username,
+                password = password,
+                is_admin = pcek
+            });
+            await foreach (var data in sendJsonStr(url, jsonStr))
+            {
+                checkResponse(data);
+            }
+
+        }
+        private void checkResponse(string data)
+        {
+            var objc = JsonConvert.DeserializeObject<dynamic>(data);
+#pragma warning disable CS8602
+            if (objc.status == "success")
+            {
+                string token1 = (objc.token).ToString();
+                string[] msg = token1.Split(".");
+                byte[] data1 = Convert.FromBase64String(msg[1]);
+                string decstr = Encoding.UTF8.GetString(data1);
+                var objd = JsonConvert.DeserializeObject<dynamic>(decstr);
+                string ppriv = objd.is_admin == 1 ? "Owner" : "Staff";
+                DataTable dt = new DataTable();
+                string connection = @"Data Source=./LocalSQL.db;Version=3;New=False;Compress=True;";
+                using (var cnn = new SQLiteConnection(connection))
+                {
+                    try
+                    {
+                        cnn.Execute("UPDATE tb_token SET token = @token, fullname = @fullname, username = @username, priv = @priv WHERE id = @id", new { 
+                            token = token1,
+                            fullname = objd.fullname,
+                            username = objd.username,
+                            priv = ppriv,
+                            id = 1
+                        });
+                        try
+                        {
+                            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+                            adapter.SelectCommand = new SQLiteCommand("SELECT * FROM tb_token WHERE id = 1", cnn);
+                            adapter.Fill(dt);
+                            errorMessage.Text = dt.Rows[0]["fullname"].ToString();
+                        } catch(Exception e)
+                        {
+                            errorMessage.Text = "Fail Select Database!";
+                        }
+
+                    } catch(Exception e)
+                    {
+                        errorMessage.Text = "Fail Update Database!";
+                    }
+                }
+
+            } else
+            {
+                errorMessage.Text = objc.message;
+            }
+#pragma warning restore CS8602
+        }
+        private async IAsyncEnumerable<string> sendJsonStr(string url, string jsonStr)
+        {
+            using (var client = new HttpClient())
+            {
+                var res = await client.PostAsync(URL + url, new StringContent(jsonStr, Encoding.UTF8, "application/json"));
+                var content = await res.Content.ReadAsStringAsync();
+                yield return content;
+            }
         }
     }
 }

@@ -52,7 +52,7 @@ namespace p1BTS
             }
             
         }
-        public async IAsyncEnumerable<string> sendJsonStr(string url, string jsonStr)
+        private async IAsyncEnumerable<string> sendJsonStr(string url, string jsonStr)
         {
             using (var client = new HttpClient())
             {
