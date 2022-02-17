@@ -1,0 +1,52 @@
+﻿<Window x:Class="p1BTS.Dashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:p1BTS"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Width="1366"
+        Height="768"
+        ResizeMode="CanResize"
+        AllowsTransparency="True"
+        WindowState="Maximized"
+        Title="Dashboard"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="35" />
+    </WindowChrome.WindowChrome>
+    <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid VerticalAlignment="Top" Background="#efefef" Grid.Row="0">
+                <StackPanel WindowChrome.IsHitTestVisibleInChrome="True" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button Margin="5,0" Style="{StaticResource MaterialDesignFlatButton}" Name="MinimizeWindowBtn">
+                        <materialDesign:PackIcon Kind="WindowMinimize" Foreground="#333" />
+                    </Button>
+                    <Button Margin="5,0" Style="{StaticResource MaterialDesignFlatButton}" Name="MaximizeWindowBtn">
+                        <materialDesign:PackIcon Kind="WindowMaximize" Foreground="#333" />
+                    </Button>
+                    <Button Margin="5 0" Style="{StaticResource MaterialDesignFlatButton}" Name="CloseAppBtn">
+                        <materialDesign:PackIcon Kind="Close" Foreground="#333" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Background="#efefef">
+                        <Button Content="Hello World" />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </materialDesign:Card>
+</Window>
