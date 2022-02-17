@@ -16,6 +16,9 @@ using System.Diagnostics;
 using System.Threading;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Data.SQLite;
+using System.Data;
+using Dapper;
 
 namespace p1BTS
 {
@@ -36,21 +39,52 @@ namespace p1BTS
             ssTxt.Text = "Checking...";
             await Task.Delay(1500);
 
-            string url = "login";
-            string jsonStr = JsonConvert.SerializeObject(new
+            DataTable dt = new DataTable();
+            string connection = @"Data Source=./LocalSQL.db;Version=3;New=False;Compress=True;";
+            using (var cnn = new SQLiteConnection(connection))
             {
-                username = "admin",
-                password = "admin",
-                is_admin = 1
-            });
-            await foreach(var data in sendJsonStr(url, jsonStr))
-            {
-                // Debug.WriteLine(data);
-                LoginWindow login = new LoginWindow();
-                login.Show();
-                this.Close();
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+                adapter.SelectCommand = new SQLiteCommand("SELECT token FROM tb_token WHERE id = 1", cnn);
+                adapter.Fill(dt);
+#pragma warning disable CS8602
+                if (!dt.Rows[0]["token"].ToString().Equals(""))
+                {
+                    string url = "auth";
+                    string jsonStr = JsonConvert.SerializeObject(new
+                    {
+                        token = dt.Rows[0]["token"].ToString()
+                    });
+                    await foreach (var data in sendJsonStr(url, jsonStr))
+                    {
+                        var objc = JsonConvert.DeserializeObject<dynamic>(data);
+                        if (objc.status == "success")
+                        {
+                            Dashboard dashboard = new Dashboard();
+                            dashboard.Show();
+                            this.Close();
+                        } else
+                        {
+                            cnn.Execute("UPDATE tb_token SET token = @token, fullname = @fullname, username = @username, priv = @priv WHERE id = @id", new
+                            {
+                                token = "",
+                                fullname = "",
+                                username = "",
+                                priv = "",
+                                id = 1
+                            });
+                            LoginWindow login = new LoginWindow();
+                            login.Show();
+                            this.Close();
+                        }
+                    }
+                } else
+                {
+                    LoginWindow login = new LoginWindow();
+                    login.Show();
+                    this.Close();
+                }
+#pragma warning restore CS8602
             }
-            
         }
         private async IAsyncEnumerable<string> sendJsonStr(string url, string jsonStr)
         {

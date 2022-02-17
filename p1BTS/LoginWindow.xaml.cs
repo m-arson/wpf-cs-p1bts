@@ -89,7 +89,7 @@ namespace p1BTS
                 string decstr = Encoding.UTF8.GetString(data1);
                 var objd = JsonConvert.DeserializeObject<dynamic>(decstr);
                 string ppriv = objd.is_admin == 1 ? "Owner" : "Staff";
-                DataTable dt = new DataTable();
+                // DataTable dt = new DataTable();
                 string connection = @"Data Source=./LocalSQL.db;Version=3;New=False;Compress=True;";
                 using (var cnn = new SQLiteConnection(connection))
                 {
@@ -104,10 +104,15 @@ namespace p1BTS
                         });
                         try
                         {
+                            /*
                             SQLiteDataAdapter adapter = new SQLiteDataAdapter();
                             adapter.SelectCommand = new SQLiteCommand("SELECT * FROM tb_token WHERE id = 1", cnn);
                             adapter.Fill(dt);
                             errorMessage.Text = dt.Rows[0]["fullname"].ToString();
+                            */
+                            Dashboard dashboard = new Dashboard();
+                            dashboard.Show();
+                            this.Close();
                         } catch(Exception e)
                         {
                             errorMessage.Text = "Fail Select Database!";
