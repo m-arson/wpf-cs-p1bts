@@ -6,8 +6,6 @@
         xmlns:local="clr-namespace:p1BTS"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
-        xmlns:m="clr-namespace:System.Windows.Media;assembly=PresentationCore"
         Icon="/Assets/MainLogo.png"
         Width="1366"
         Height="768"
@@ -252,7 +250,7 @@
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0" Margin="15" x:Name="dddt">
                             <Grid.ColumnDefinitions>
@@ -277,40 +275,49 @@
                             HorizontalAlignment="Left">
                             <ScrollViewer
                                 x:Name="sv"
-                                CanContentScroll="True"
+                                PreviewMouseWheel="sv_PreviewMouseWheel"
+                                ScrollViewer.CanContentScroll="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                                 ScrollViewer.HorizontalScrollBarVisibility="Auto">
                                 <DataGrid
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    CanUserReorderColumns="False"
-                                    AutoGenerateColumns="False">
+                                        ItemsSource="{Binding DataGridItems}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        VerticalScrollBarVisibility="Auto"
+                                        HorizontalScrollBarVisibility="Auto"
+                                        CanUserReorderColumns="False"
+                                        IsReadOnly="True"
+                                        AutoGenerateColumns="False">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="ID 0000" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0001" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0002" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0003" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0004" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0005" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0006" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0007" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0008" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0009" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0010" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0011" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0012" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0013" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0014" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0015" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0016" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0017" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0018" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0019" MinWidth="100"/>
-                                        <DataGridTextColumn Header="ID 0020" MinWidth="100"/>
+                                        <DataGridTextColumn Header="No" Binding="{Binding no}" />
+                                        <DataGridTextColumn Header="SO Numb" Binding="{Binding so_numb}" />
+                                        <DataGridTextColumn Header="Site ID" Binding="{Binding site_id}" />
+                                        <DataGridTextColumn Header="Site ID OP" Binding="{Binding site_id_op}" />
+                                        <DataGridTextColumn Header="Site Name" Binding="{Binding site_name}" />
+                                        <DataGridTextColumn Header="Company" Binding="{Binding company}" />
+                                        <DataGridTextColumn Header="Status" Binding="{Binding status}" />
+                                        <DataGridTextColumn Header="Operator" Binding="{Binding operatr}" />
+                                        <DataGridTextColumn Header="Tower Height" Binding="{Binding tower_height}" />
+                                        <DataGridTextColumn Header="KOM Sitac Date" Binding="{Binding kom_sitac_date}" />
+                                        <DataGridTextColumn Header="Tower Height" Binding="{Binding tower_height}" />
+                                        <DataGridTextColumn Header="Validate Date" Binding="{Binding validate_date}" />
+                                        <DataGridTextColumn Header="Long" Binding="{Binding long_}" />
+                                        <DataGridTextColumn Header="Lat" Binding="{Binding lat}" />
+                                        <DataGridTextColumn Header="Residence" Binding="{Binding residence}" />
+                                        <DataGridTextColumn Header="Province" Binding="{Binding province}" />
+                                        <DataGridTextColumn Header="SPO Pre Sitac" Binding="{Binding spo_pre_sitac}" />
+                                        <DataGridTextColumn Header="PO Pre Sitac" Binding="{Binding po_pre_sitac}" />
+                                        <DataGridTextColumn Header="Status BAST" Binding="{Binding status_bast}" />
+                                        <DataGridTextColumn Header="PO Sitac" Binding="{Binding po_sitac}" />
+                                        <DataGridTextColumn Header="PO CME" Binding="{Binding po_cme}" />
+                                        <DataGridTextColumn Header="Status BAST" Binding="{Binding status_bast2}" />
+                                        <DataGridTextColumn Header="PO Operational" Binding="{Binding po_operational}" />
+                                        <DataGridTextColumn Header="PO Date" Binding="{Binding po_date}" />
+                                        <DataGridTextColumn Header="Status" Binding="{Binding status_}" />
+                                        <DataGridTextColumn Header="PO Comcase" Binding="{Binding po_comcase}" />
+                                        <DataGridTextColumn Header="Remark BAST CME" Binding="{Binding remark_bast_cme}" />
+                                        <DataGridTextColumn Header="Reamrk BAST IMB" Binding="{Binding remark_bast_imb}" />
                                     </DataGrid.Columns>
-                                    <DataGrid.Resources>
-                                        
-                                    </DataGrid.Resources>
                                 </DataGrid>
                             </ScrollViewer>
                         </Grid>
